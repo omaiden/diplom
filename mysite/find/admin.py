@@ -1,3 +1,9 @@
 from django.contrib import admin
+from .models import Post_type, Post, Relative, Missing_person, Victim
 
-# Register your models here.
+admin.site.register(Post_type)
+admin.site.register(Post)
+admin.site.register(Relative)
+admin.site.register(Missing_person)
+admin.site.register(Victim)
+

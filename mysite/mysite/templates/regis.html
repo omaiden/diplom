@@ -1,0 +1,40 @@
+{% extends "template.html" %}
+<!-- {% load static %} -->
+
+	{% block css %}
+		<link rel="stylesheet" href="{% static 'css/regis.css' %}">
+	{% endblock %}
+	{% block content %}
+	      {% if form.errors %}
+        <p class="error">Lo sentimos, la combinacion de usuario y contrasena no es correcta!</p>
+      {% endif %}  
+<!-- 		<div class="container content">
+	<div class="row">
+		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-md-push-3"> -->
+					<div class="background">
+					
+						<form action="." method="POST" role="form">
+							<input type='hidden' name='csrfmiddlewaretoken' value='randomchars' />
+							{% csrf_token %}
+							{{ form.as_p }}
+
+<!-- 							<legend class="text-center title">Регистрация</legend>
+						
+<div class="form-group">
+	<label for="">ФИО</label>
+	<input type="text" class="form-control fio" name="fio" id="fio" placeholder="">
+	<label for="">Телефонд</label>
+	<input type="text" class="form-control" name="" id="" placeholder="8 905 123 45 67">
+	<label for="">Эл. почта</label>
+	<input type="email" class="form-control" name="email" id="email" placeholder="xyz@gmail.com">				
+	<label for="">Пароль</label>
+	<input type="password" class="form-control" name="psd" id="psd">
+	<label for="">Повторите пароль</label>
+	<input type="password" class="form-control" name="psd-again" id="psd-again">
+</div> -->
+							<div class="but">
+							<button type="submit" class="btn btn-primary" class="submit">Продолжать</button>
+							</div>
+						</form>
+					</div>
+	{% endblock %}

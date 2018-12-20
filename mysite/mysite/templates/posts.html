@@ -1,0 +1,17 @@
+{% extends "template.html" %}
+
+{% block css %}{% endblock %}
+
+{% block content %}
+	
+<ul>
+	{% for post in object_list %}
+		<li>{{post}}</li>
+		<li><img src="{{post.missing_person_id.image.url}}" alt="">{{post.missing_person_id.image}}</li>
+	{% endfor %}
+</ul>
+
+{% endblock %}
+
+{% block js %}{% endblock %}
+

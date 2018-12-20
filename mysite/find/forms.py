@@ -13,6 +13,7 @@ class PostForm(forms.ModelForm):
 	class Meta:
 		model = Post
 		fields = ['text','post_type_id']
+		
 
 	# def save(self):
 
@@ -44,6 +45,9 @@ class VictimForm(forms.ModelForm):
 		model = Victim
 		fields = '__all__'
 
+		widgets = {
+            'date': DateInput(),
+        }
 
 class ImageForm(forms.ModelForm):
 	class Meta:
@@ -54,9 +58,9 @@ class ImageForm(forms.ModelForm):
 	# 	Image.objects.create(image=self.cleaned_data['image'])
 
 class RegistrationForm(forms.Form):
-	fullname = forms.CharField(label="ФИО", max_length=50)
+	fullname = forms.CharField(label="ФИО", max_length=50, initial='')
 	username = forms.CharField(label="Логин", max_length=30)
-	email = forms.EmailField(label="Эл. почта")
+	email = forms.EmailField(label="Эл. почта", initial='xyz@mail.com')
 	password1 = forms.CharField(label="Пароль", widget=forms.PasswordInput())
 	password2 = forms.CharField(label="Подтвердите пароль", widget=forms.PasswordInput())
 	def clean_password2(self):
@@ -69,8 +73,6 @@ class RegistrationForm(forms.Form):
 
 	def clean_username(self):
 		username = self.cleaned_data['username']
-		# if re.search(r'^\w+$', username):
-		# 	raise forms.ValidationError("Логин содержит неправильный символ")
 		try:
 			User.objects.get(username=username)
 		except ObjectDoesNotExist:

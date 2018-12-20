@@ -18,12 +18,25 @@ from django.urls import path
 from find import views
 from django.contrib.auth import views as auth_views
 
+from . import settings
+from django.contrib.staticfiles.urls import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+ 
+ 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(next_page='/index'), name='logout'),
     path('index/', views.index),
+    path('', views.index),
     path('regis/', views.regis),
-    path('post/', views.post),
-    path('post/thanks', views.thanks),
+    path('missing', views.missing),
+    path('victim', views.victim),
+    path('thanks/', views.thanks),
+    path('posts/', views.PostList.as_view(template_name='posts.html')),
+    path('image/', views.image),
 ]
+
+urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -38,7 +38,7 @@ class Relative(models.Model):
     email = models.EmailField(null=True)
 
     def __str__(self):
-        return self.relation
+        return self.fullname
 
     class Admin: pass
 
@@ -52,20 +52,26 @@ class Missing_person(models.Model):
     status = models.CharField(max_length=20)
 
     def __str__(self):
-        return fullname
+        return self.name
 
     class Admin: pass
 
 
 class Image(models.Model):
     person_id = models.ForeignKey(Missing_person, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to=get_image_missings_path, default = 'images/non.png')
+    # image = models.ImageField(upload_to=get_image_missings_path, default = 'images/non.png')
+    image = models.ImageField(upload_to='missing', default = 'images/non.png')
+
+    def __str__(self):
+        return str(self.id)
+
+    class Admin: pass
 
 
 class Victim(models.Model):
     date = models.DateField()
     place = models.CharField(max_length=100)
-    image = models.ImageField(upload_to=get_image_victims_path, default = 'images/non.png')
+    image = models.ImageField(upload_to='victim', default = 'images/non.png')
     additional_information = models.CharField(max_length=50, null=True)
 
     class Admin: pass
@@ -76,10 +82,10 @@ class Post(models.Model):
     time = models.DateTimeField(default = datetime.datetime.now())
     found = models.BooleanField(default=False)
     #user_id = models.ForeignKey(User, on_delete=models.CASCADE, default='000')
-    post_type_id = models.ForeignKey(Post_type, on_delete=models.CASCADE, default='000')
-    relative_id = models.ForeignKey(Relative, on_delete=models.CASCADE, default='000')
-    missing_person_id = models.ForeignKey(Missing_person, on_delete=models.CASCADE, default='000')
-    victim_id = models.ForeignKey(Victim, on_delete=models.CASCADE, default='000')
+    post_type_id = models.ForeignKey(Post_type, on_delete=models.CASCADE, default=None)
+    relative_id = models.ForeignKey(Relative, on_delete=models.CASCADE, default=None)
+    missing_person_id = models.ForeignKey(Missing_person, on_delete=models.CASCADE, default=None)
+    victim_id = models.ForeignKey(Victim, on_delete=models.CASCADE, default=None)
 
     def __str__(self):
         return self.text

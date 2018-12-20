@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="ru">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,14 +25,15 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="/index"><img src="{% static 'images/logo2.png' %}" alt=""></a>
+					<a class="navbar-brand" href="/"><img src="{% static 'images/logo2.png' %}" alt=""></a>
 				</div>
 		
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse navbar-ex1-collapse">
 					<ul class="nav navbar-nav">
-						<li><a href="#">Новостная лента</a></li>
-						<li><a href="#">Разместить сообщение</a></li>
+						<li><a href="/posts">Новостная лента</a></li>
+						<li><a href="/missing">Разместить сообщение</a></li>
+						<li><a href="/victim">Разместить объявление</a></li>
 					</ul>
 
 					<ul class="nav navbar-nav navbar-right">
@@ -50,17 +51,7 @@
 			</div>
 		</nav>
 
-        <div class="loginform">
-            <span class="glyphicon glyphicon-remove-circle close"></span>
-            <form action="./auth/login" method="POST" role="form">
-                 User name:<br>
-                <input type="text" name="username"><br>
-                User password:<br>
-                <input type="password" name="psw"><br><br>
-                <button type="submit" class="btn btn-primary">Войти</button>
-                <a href="/regis">Регистрация</a>
-            </form>
-        </div><!--  end loginform -->
+
 		<div class="container body">
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">

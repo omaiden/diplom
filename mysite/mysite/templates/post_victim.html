@@ -2,7 +2,10 @@
 
 {% block css %}{% endblock %}
 
-{% block content %} 
+{% block content %}
+	{% if form.errors %}
+        <p class="error">Lo sentimos, la combinacion de usuario y contrasena no es correcta!</p>
+    {% endif %} 
 	<form action="." method="POST" enctype="multipart/form-data">
 		{% csrf_token %}
 		<div class="post">
@@ -16,19 +19,15 @@
 			<p><label for="">Телефон</label>{{form3.telephone}}</p>
 			<p><label for="">Эл. почта</label>{{form3.email}}</p>
 		</div>
-		<div class="missing">
-			<p>Информации о пропавшем человке:</p>
-			<p><label for="">ФИО</label>{{form2.name}}</p>
-			<p><label for="">Сокрашенное имя</label>{{form2.nickname}}</p>
-			<p><label for="">День рождения</label>{{form2.birthday}}</p>
-			<p><label for="">Где потерял</label>{{form2.missing_place}}</p>
-			<p><label for="">Когда потерял</label>{{form2.missing_time}}</p>
-			<p><label for="">Состояние</label>{{form2.status}}</p>
-		</div>	
-		<div class="image">
-			<p><label for="">Изображение</label>{{form4.image}}</p>
+
+		<div class="victim">
+			<p>Информации о видимом человке:</p>
+			<p><label for="">Где увиделся</label>{{form2.place}}</p>
+			<p><label for="">Когда увиделся</label>{{form2.date}}</p>
+			<p><label for="">Изображение</label>{{form2.image}}</p>
+			<p><label for="">Другие информации</label>{{form2.additional_information}}</p>
 		</div>
-		<input type="submit" value="submit">
+		<button type="submit" class="btn btn-primary" class="submit">Продолжать</button>
 	</form>
 {% endblock %}
 
